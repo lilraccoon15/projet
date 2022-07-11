@@ -1,0 +1,25 @@
+<main class="yellowWave">
+    <div class="container">
+        <h1>Connexion</h1>
+        <div class="connexionForm">
+            <form action="index.php?action=login" method="post">
+                <?php if(isset($message)) : ?>
+                    <div class="message"><?= $message ?></div>
+                <?php endif; ?>
+                <?php if(array_key_exists("message",$_GET)) : ?>
+                    <div class="message"><?= $_GET["message"] ?> </div>
+                <?php endif; ?>
+                <label>Email :</label>
+                <input type="email" name="email">
+                <label>Mot de passe :</label>
+                <input type="password" name="password">
+                <div class="connectButtons">
+                    <button type="submit" value="submit" class="connectButton">Se connecter</button>
+                    <button type="reset" value="submit" class="connectButton">Annuler</button>
+                </div>
+            </form>
+
+            <a href="index.php?action=register" class="registerLink">Pas encore membre ?</a>
+        </div>
+    </div>
+</main>

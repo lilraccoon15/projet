@@ -1,0 +1,59 @@
+<main class="yellowWave">
+    <div class="container">
+        <?php if(array_key_exists("showDetails", $_GET)) : ?>
+            <h1>Détail de la commande n°<?= $orderById["id_order"]?></h1>
+            <div class="courrier">
+                <p>Numéro de client : <a href="index.php?action=adminUsers&id=<?= $user["id_user"] ?>&showDetails"><?= $user["id_user"] ?></a></p>
+                <p>Nom : <?= $user["lastname"] ?></p>
+                <p>Prénom : <?= $user["name"] ?></p>
+                <p>Adresse email : <?= $user["email"] ?></p>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <td>Evènement</td>
+                        <td>Placement</td>
+                        <td>Quantité</td>
+                        <td>Montant</td>
+                    </tr>
+                </thead>
+                <?php foreach($details as $detail) : ?>
+                    <tr>
+                        <td data-label="Evènement"><?= $detail["name"] ?></td>
+                        <td data-label="Placement"><?= $detail["cat_name"] ?></td>
+                        <td data-label="Quantité"><?= $detail["quantity"] ?></td>
+                        <td data-label="Montant"><?= $detail["quantity"]*$detail["prices"] ?>€</td>
+                    </tr>
+                <?php endforeach; ?>
+                <tfoot>
+                    <tr>
+                        <td colspan="3">Montant total :</td>
+                        <td><?= $orderById["payment"]?> €</td>
+                    </tr>
+                </tfoot>
+            </table>
+        
+        <?php else : ?>
+            <h1>Liste des commandes effectuées</h1>
+
+            <table>
+                <thead>
+                    <tr>
+                        <td>Numéro de commande</td>
+                        <td>Numéro de client</td>
+                        <td>Date de la commande</td>
+                        <td>Montant de la commande</td>
+                    </tr>
+                </thead>
+            <?php foreach($orders as $order) : ?>
+                <tr>
+                    <td data-label="N° commande"><a href="index.php?action=adminOrders&id=<?= $order["id_order"] ?>&showDetails"><?= $order["id_order"] ?></a></td>
+                    <td data-label="N° client"><a href="index.php?action=adminUsers&id=<?= $order["id_user"] ?>&showDetails"><?= $order["id_user"] ?></a></td>
+                    <td data-label="Date"><?= $order["date"] ?></td>
+                    <td data-label="Montant"><?= $order["payment"] ?>€</td>
+                </tr>
+            <?php endforeach; ?>
+            </table>
+        <?php endif; ?>
+    </div>
+</main>

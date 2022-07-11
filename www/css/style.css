@@ -1,0 +1,2492 @@
+/* font-family: 'Bebas Neue', cursive;
+font-family: 'Oxygen', sans-serif;
+font-family: 'Roboto', sans-serif; */
+
+/****************************************BASES***********************************/
+
+* {
+    box-sizing: border-box;
+    margin:0;
+}
+
+.clearfix::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-size: 1.6rem;
+    font-family: 'Roboto', sans-serif;
+    background-image:url("../images/background.jpg");
+    background-size:cover;
+    color:var(--color-dark-grey);
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    overflow-x:hidden;
+}
+
+img {
+    max-width: 100%;
+}
+
+ul, li {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+    color:var(--color-dark-grey);
+    transition: color 0.2s;
+}
+
+a:hover {
+    color:var(--color-purple);
+    transition: color 0.2s;
+}
+
+/************PALETTE/VARIABLES***********/
+
+:root {
+    /*******COULEURS******/
+    --white:white;
+    --color-warm-white: #fff2ec;
+    --color-cheer-yellow: #f0edd4;
+    --color-light-yellow: #f2edc0;
+    --color-yellow: #f1e88f;
+    --color-middle-yellow: #e7c84f;
+    --color-dark-yellow: #edbe00;
+    --color-beige: #FFEEE6;
+    --color-light-pink:#FEDEDF;
+    --color-pink:#997094;
+    --color-purple : #5d60b9;
+    --color-lavander: #889ACA;
+    --color-red: #C94E76;
+    --color-black: black;
+    --color-dark-grey: #333333;
+    /*******TAILLES POLICES******/
+    --size-extra-small: 1.1rem;
+    --size-small: 1.4rem;
+    --size-medium-small: 1.8rem;
+    --size-bigger-small: 2.2rem;
+    --size-medium:2.8rem;
+    --size-big:3.5rem;
+    --size-big-medium:4.8rem;
+    --size-very-big: 7rem;
+    --size-huge:10rem;
+    --title-size:1.8rem;
+}
+
+
+/*****************************************************************LAYOUT USER****************************************************/
+/**********************************************HEADER**************************************/
+
+.user header {
+    display:flex;
+    flex-wrap:nowrap;
+    justify-content: space-between;
+    align-items: center;
+    height:6.25em;
+    padding:1.25em;
+    padding-top:2.5em;
+    position:relative;
+}
+
+/**********************GAUCHE (logo et titre)***********************/
+
+.logoTitle {
+    /* position:relative; */
+    z-index:15;
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+}
+
+.logo {
+    width:6.25em;
+}
+
+.title {
+    font-family: 'Bebas Neue', cursive;
+    text-transform:uppercase;
+    font-weight:bold;
+    font-size:var(--title-size);
+    letter-spacing:0.5rem;
+    text-shadow: 0.031em 0.031em var(--color-light-yellow);
+}
+
+/**********************DROITE (navigation et profil)***********************/
+
+
+/***********NAVIGATION (menu hamburger)************/
+
+
+/*logo hamburger*/ 
+.fa-bars {
+    z-index:15;
+    width:10%;
+    text-align:left;
+}
+
+/*js hide/show nav*/ 
+.user .hiddenNav {
+    opacity:0;
+    left:-62.5em;
+    transition-property:opacity, left;
+    transition-duration:0.5s;
+    transition-delay: 0s, 0.5s;
+}
+
+.user .activeNav {
+    opacity:1;
+    left:0;
+    transition-property:opacity;
+    transition-duration:0.5s;
+}
+
+.disableScroll {
+    overflow:hidden;
+}
+
+.user header nav {
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:10;
+    width:100%;
+    height:100vh;
+    background-image:url("../images/background.jpg");
+    background-size:cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.user header nav ul {
+    margin-top:9.375em;
+    padding:0;
+    width:100%;
+    text-align:center;
+}
+
+.user header nav li {
+    margin-top:1.25em;
+    margin-bottom:2.5em;
+    font-family: 'Bebas Neue', cursive;
+    text-transform:uppercase;
+    font-size:var(--size-medium-small);
+    font-weight:bold;
+    letter-spacing:0.5rem;
+    text-shadow: 0.031em 0.031em var(--color-light-yellow);
+    transition: transform 0.2s, color 0.2s, text-shadow 0.2s;
+}
+
+.user header nav li:hover, .user header nav li a:hover {
+    color:var(--color-dark-yellow);
+    text-shadow: 0.031em 0.031em var(--color-black);
+    transition: transform 0.2s, color 0.2s, text-shadow 0.2s;
+}
+
+/*recherche*/
+.fa-search {
+    cursor: pointer;
+}
+
+.hiddenSearch {
+    opacity:0;
+    left:-125em;
+    transition-property:opacity, left;
+    transition-duration:0.5s;
+    transition-delay: 0s, 0.5s;
+}
+
+.activeSearch {
+    opacity:1;
+    left:0;
+    transition-property:opacity;
+    transition-duration:0.5s;
+}
+
+/*formulaire de recherche*/
+.searching {
+    position:absolute;
+    width:100%;
+    top:5.313em;
+    z-index:20;
+    height:100vh;
+    background-image:url("../images/background.jpg");
+    background-size:cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    padding:10%;
+}
+
+.closeSearch {
+    width: 10%;
+    text-align:center;
+    z-index:20;
+}
+
+/*barre de recherche*/ 
+
+.searchBar {
+    background:none;
+    border:none;
+}
+
+.searchBar, .searchResults {
+    display:block;
+    width:100%;
+    margin-right:auto;
+    margin-left:auto;
+}
+
+.searchResults li {
+    margin-bottom:0.625em;
+    font-family: 'Bebas Neue', cursive;
+    font-size:var(--size-medium);
+}
+
+.searchLabel {
+    font-family: 'Bebas Neue', cursive;
+    font-size:var(--size-big);
+}
+
+.fa-times {
+    cursor:pointer;
+}
+
+.searchBarContainer {
+    background-color:var(--color-warm-white);
+    width:100%;
+    border-radius:1.25em;
+    padding:1.25em;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top:3.125em;
+    margin-bottom:3.125em;
+    box-shadow: 0em 0em 3.125em var(--color-cheer-yellow);
+    transition: background-color 0.3s;
+}
+
+.searchBarContainer:hover {
+    background-color:var(--color-warm-white);
+    box-shadow: 0em 0em 3.125em var(--color-middle-yellow);
+    transition: box-shadow 0.3s, background-color 0.3s;
+}
+
+/*panier*/ 
+.basket {
+    position:relative;
+    width:1.775em;
+}
+
+.basketNumber {
+    position:absolute;
+    top:45%;
+    left:0.938em;
+    color:var(--color-beige);
+    font-size:var(--size-small);
+    font-weight: lighter;
+    background-color:var(--color-pink);
+    padding-left:0.188em;
+    padding-top:0.125em;
+    text-align:center;
+    border-radius: 50%;
+    width:1.125em;
+    height: 1.125em;
+}
+
+.messageBasket {
+    text-align:center;
+    padding-top:6.25em;
+    font-family: 'Bebas Neue', cursive;
+    font-size:var(--size-medium);
+    letter-spacing: 0.5rem;
+}
+
+/*font-awesome*/ 
+.fa-search, .fa-user, .fa-bars, .fa-shopping-bag, .fa-times {
+    font-size:var(--size-bigger-small);
+}
+
+/* profil connecté */
+.connected {
+    cursor:pointer;
+}
+
+/*********************account (hors hamburger)********************/ 
+.access {
+    display:none;
+}
+
+.accessMobile {
+    z-index:15;
+    display:flex;
+    justify-content: right;
+    width:15%;
+    text-align:center;
+}
+
+.accessMobile .fa-sign-out-alt {
+    margin-left:1.25em;
+}
+
+
+/**********************************************FOOTER**************************************/
+
+footer {
+    margin-top:3.125em;
+    height:25em;
+    background-image:url("../images/footer-background.png");
+    background-size:cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    display:flex;
+    align-items: center;
+}
+
+.footerContainer {
+    display:flex;
+    flex-direction:column;
+    justify-content: space-between;
+    align-items: center;
+    width:100%;
+    padding-left:10%;
+    padding-right:10%;
+}
+
+.logoTitleFooter {
+    z-index:1;
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+}
+
+.footerLinks {
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    font-family: 'Bebas Neue', cursive;
+    text-transform:uppercase;
+    font-weight:bold;
+    letter-spacing:0.5rem;
+    text-align:center;
+}
+
+.footerSocial {
+    font-size:var(--size-medium-small);
+    display:flex;
+    justify-content: space-between;
+    width:60%;
+    margin-top:1.875em;
+    margin-bottom:1.875em;
+}
+
+.footerLinks a {
+    margin-bottom:0.625em;
+}
+
+.footerLogo {
+    margin-bottom:1.875em;
+}
+
+/*****************************************************************CONTENU MAIN****************************************************/
+
+/***************************************COMMUN A TOUTES LES PAGES*******************************/
+
+.container {
+   margin-right:auto;
+   margin-left:auto; 
+   width:95%;
+}
+
+/*******TITRES*********/
+
+h1 {
+    font-family: 'Bebas Neue', cursive;
+    text-align:center;
+    font-size:var(--size-medium);
+    letter-spacing: 0.5rem;
+    text-shadow: 0.03em 0.03em var(--white), 0em 0em 0.938em var(--color-warm-white);
+}
+
+h2 {
+    font-family: 'Bebas Neue', cursive;
+    text-align:center;
+    font-size:var(--size-medium);
+    color:var(--color-pink);
+    text-shadow: 0.03em 0.03em var(--white), 0em 0em 0.938em var(--color-warm-white);
+}
+
+.submitButton {
+    width:6.25em;
+}
+
+.yellowWave {
+    background-image:url("../images/section-background.png");
+    background-size:100%;
+    background-position: center top;
+    background-repeat: no-repeat;
+    padding-top:3.125em;
+    padding-bottom:3.125em;
+}
+
+.message {
+    color:var(--color-red);
+    margin-bottom:1.25em;
+    font-weight:bold;
+    animation: 1s showMessage;
+    text-align:center;
+}
+
+@keyframes showMessage {
+    10%, 90% {
+        transform: translate3d(-0.063em, 0, 0);
+      }
+      
+      20%, 80% {
+        transform: translate3d(0.125em, 0, 0);
+      }
+    
+      30%, 50%, 70% {
+        transform: translate3d(-0.25em, 0, 0);
+      }
+    
+      40%, 60% {
+        transform: translate3d(0.25em, 0, 0);
+      }
+}
+
+/***************************************HOMEPAGE*******************************/
+
+/******slider*******/
+
+.slider {
+    display:none;
+}
+
+/*****FORM NEWSLETTER****/
+
+.newsletterHomeForm {
+    text-align:center;
+}
+
+.newsletterContainer {
+    background-color:var(--color-warm-white);
+    width:90%;
+    border-radius:1.25em;
+    padding:0.625em;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top:2.5em;
+    box-shadow: 0em 0em 3.125em var(--color-cheer-yellow);
+    transition: box-shadow 0.3s, background-color 0.3s;
+}
+
+.newsletterContainer:hover {
+    background-color:var(--color-warm-white);
+    box-shadow: 0em 0em 3.125em var(--color-middle-yellow);
+    transition: box-shadow 0.3s, background-color 0.3s;
+}
+
+.emailNewsletter {
+    background:none;
+    border: none;
+    width:80%;
+}
+
+.submitNewsletterButton {
+    border:0em;
+    background-color:var(--color-light-pink);
+    border-radius:50%;
+    padding:0.625em;
+    cursor:pointer;
+    transition: background-color 0.3s;
+}
+
+.submitNewsletterButton:hover {
+    color:var(--color-warm-white);
+    background-color:var(--color-lavander);
+    transition: color 0.3s, background-color 0.3s;
+}
+
+/***************************************BILLETTERIE(+highlight page d'accueil)*******************************/
+
+.centerSortingButton {
+    text-align:right;
+    margin:1.25em;
+}
+
+.sortingButton {
+    width:7.5em;
+    padding:0.938em;
+    font-family: 'Bebas Neue', cursive;
+    border:0em;
+    cursor:pointer;
+    background-color:var(--color-beige);
+    transition: color 0.3s, background-color 0.3s;
+    letter-spacing:0.5rem;
+}
+
+.sortingButton:hover {
+    background-color:var(--color-pink);
+    color:var(--white);
+    transition: color 0.3s, background-color 0.3s;
+}
+
+.hidden {
+    display:none;
+}
+
+.show {
+    display:block;
+}
+
+.hiddenFilters {
+    opacity:0;
+    display:none;
+    right:-62.5em;
+}
+
+.showFilters {
+    display:block;
+    animation: 1s slidein;
+    opacity:1;
+    right:0;
+}
+
+@keyframes slidein {
+    from
+    {
+        opacity:0;
+    }
+    to
+    {
+        opacity:1;
+    }
+}
+
+.filterContainer {
+    position:absolute;
+    background-image:url("../images/background.jpg");
+    background-size:400%;
+    background-position: right top;
+    background-repeat: no-repeat;
+    top:0;
+    height:100vh;
+    width:100%;
+    z-index:25;
+    font-family: 'Bebas Neue', cursive;
+    padding:1.25em;
+}
+
+.filterContainer button {
+    margin-bottom:1.25em;
+    background:none;
+    border:0em;
+    cursor:pointer;
+    text-align:left;
+    color:var(--color-dark-grey);
+}
+
+.sortingButtons, .closeFilters, .sortingForm {
+    font-size:var(--size-bigger-small);
+}
+
+.sortingForm input {
+    margin-right:0.625em;
+}
+
+.darkBackgroundHidden {
+    position:absolute;
+    background-color: rgba(0,0,0,0.5);
+    opacity:0;
+    left:-125em;
+    top:0;
+    height:100vh;
+    width:100%;
+    z-index:20;
+    transition: opacity 0.5s;
+}
+
+.showDarkBackground {
+    left:0;
+    opacity:1;
+    transition: opacity 0.5s;
+}
+
+.list {
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    align-items: center;
+}
+
+.parentHighlight {
+    display:none;
+}
+
+.activeHighlight {
+    display:block;
+}
+
+.hideHighlight {
+    display:block;
+}
+
+.parent {
+    position:relative;
+    margin:1.25em;
+    width:12.5em;
+}
+
+.previousHighlight, .nextHighlight {
+    position:absolute;
+    background:none; 
+    border:0em;
+    font-size:var(--size-medium);
+    opacity:0.4;
+}
+
+.previousHighlight:hover, .nextHighlight:hover {
+    opacity:0.6;
+}
+
+.previousHighlight {
+    left:8%;
+}
+
+.nextHighlight {
+    right:8%;
+}
+
+.posterTickets {
+    width:6.25em;
+    height:9.375em;
+}
+
+.poster {
+    width:12.5em;
+    height:18.75em;
+    background-size:cover;
+    filter: grayscale(100%);
+    transition: filter 0.2s, transform 0.2s;
+}
+
+.parent:hover .poster {
+    transform: scale(1.05);
+    filter: grayscale(100%) brightness(55%) sepia(100%) hue-rotate(-160deg) saturate(200%) contrast(0.8);
+    transition: filter 0.2s, transform 0.2s;
+}
+
+.parent:hover .infoPoster {
+    transform: scale(1.05);
+    color:var(--color-light-pink);
+    text-shadow: 0.03em 0.03em var(--color-black);
+    transition: transform 0.2s, color 0.2s, text-shadow 0.2s;
+}
+
+.posterArtist, .posterDay, .posterMonth, .posterYear, .posterName, .posterCat {
+    font-family: 'Bebas Neue', cursive;
+    position:absolute;
+    color:var(--color-middle-yellow);
+    text-shadow: 0.03em 0.03em var(--color-black), 0em 0em 0.938em var(--color-beige);
+}
+
+.posterArtist{
+    font-size:var(--size-medium);
+    top: 5%;
+    left:5%;
+}
+
+.posterName {
+    top:15%;
+    left:5%;
+    max-width:50%;
+}
+
+.posterCat {
+    bottom:2%;
+    right:5%;
+    font-size:var(--size-medium-small);
+}
+
+.posterDay, .posterMonth, .posterYear {
+    left:5%;
+    font-size:var(--size-big);
+    font-weight:bold;
+}
+
+.posterDay {
+    bottom:20%;
+}
+
+.posterMonth {
+    bottom:10%;
+}
+
+.posterYear {
+    bottom:0;
+}
+
+.showCat 
+{
+    display:block;
+}
+
+/***************************************PAGE PAR EVENT*******************************/
+
+.posterEvent {
+    display:none;
+}
+
+.eventContainer {
+    background-color: RGBA(241,232,143,0.1);
+    padding:0.625em;
+}
+
+.infoEvent {
+    position:relative;
+    margin-bottom:1.875em;
+}
+
+h1.eventTitles {
+    padding-top:3.125em;
+}
+
+h2.eventTitles {
+    font-size:var(--size-bigger-small);
+}
+
+.eventCategory {
+    position:absolute;
+    right:0;
+    top: 0;
+    font-family: 'Bebas Neue', cursive;
+    font-size:var(--size-medium);
+    text-shadow: 0.188em 0.125em var(--color-light-yellow);
+    width:6.25em;
+    text-align:center;
+}
+
+.eventDate {
+    margin-bottom:1.875em;
+    margin-top:1.875em;
+    text-align:center;
+    font-weight:bold;
+}
+
+.showPrices {
+    text-align:center;
+    padding-top:1.875em;
+}
+
+.pricesButton {
+    margin-top:1.875em;
+    width:18.75em;
+    padding:1.25em;
+    font-family: 'Bebas Neue', cursive;
+    border:0em;
+    cursor:pointer;
+    background-color:var(--color-beige);
+    transition: color 0.3s, background-color 0.3s;
+    letter-spacing:0.5rem;
+}
+
+.pricesButton:hover {
+    background-color:var(--color-lavander);
+    color:var(--white);
+    transition: color 0.3s, background-color 0.3s;
+}
+
+.infoEventSuite {
+    display:flex;
+    flex-wrap:nowrap;
+    align-items:flex-start;
+    justify-content: space-between;
+    flex-direction:column-reverse;
+    align-items: center;
+}
+
+.eventVideo {
+    position:relative;
+    width:100%;
+    overflow: hidden;
+    padding-top: 56.25%;
+}
+
+.video {
+    position:absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width:100%;
+    height:100%; 
+}
+
+.eventDescription {
+    text-align:justify;
+    width:100%;
+    margin-bottom:1.25em;
+}
+
+.bold {
+    font-weight:bold;
+}
+
+/***************************************PAGE DES TARIFS*******************************/
+
+
+.pricesDetails {
+    display:flex;
+    flex-direction: column;
+    margin-top:3.125em;
+}
+
+.pricesLeft, .pricesRight {
+    width:100%;
+    text-align:center;
+}
+
+.pricesRight {
+    margin-top:1.25em;
+}
+
+.choice {
+    width:100%;
+    padding:3%;
+    background-color: RGBA(241,232,143,0.3);
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.choiceTitle {
+    font-family: 'Bebas Neue', cursive;
+    font-size:var(--size-bigger-small);
+    margin-bottom:1.25em;
+}
+
+.toggle {
+    cursor: pointer;
+    display:flex;
+    justify-content: space-between;
+    padding:0.625em;
+    margin:0.625em 0em;
+    background-color: RGBA(241,232,143,0.6);
+    font-weight:bold;
+}
+
+.toggle div {
+    width:45%;
+}
+
+.toggle div:nth-child(1) {
+    text-align: left;
+}
+
+.toggle div:nth-child(2) {
+    text-align: right;
+}
+
+.priceForm {
+    text-align:right;
+    background-color: RGBA(241,232,143,0.3);
+    padding:0.625em;
+    margin-top:-0.625em;
+}
+
+.addBasketButton {
+    margin-top:1.25em;
+    width:14.375em;
+    padding:1.25em;
+    font-family: 'Bebas Neue', cursive;
+    border:0em;
+    cursor:pointer;
+    background-color:var(--color-beige);
+    transition: color 0.3s, background-color 0.3s;
+    letter-spacing:0.5rem;
+}
+
+.addBasketButton:hover {
+    background-color:var(--color-lavander);
+    color:var(--white);
+    transition: color 0.3s, background-color 0.3s;
+}
+
+/***************************************CONTACT*******************************/
+
+
+.plan {
+    width:80%;
+}
+
+/***************************************INFOS PRATIQUES*******************************/
+
+.practical .reveal {
+    display:flex;
+    flex-direction:column;
+}
+
+.practical .reveal img {
+    width:100%;
+}
+
+.practical .reveal p {
+    text-align:justify;
+    margin-bottom:0.625em;
+}
+
+.practical .reveal h2 {
+    margin-top:1.25em;
+}
+
+/***************************************PANIER*******************************/
+.basketContainer {
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction:column;
+}
+
+.articleList, .basketTotal {
+    background-color: RGBA(241,232,143,0.1);
+    width:90%;
+    padding:1.25em;
+}
+
+.articleList {
+    margin-bottom:1.25em;
+}
+
+.article {
+    margin-bottom:1.25em;
+}
+
+.article:last-of-type {
+    margin-bottom:0em;
+}
+
+.basketPoster {
+    width:40%;
+    float:left;
+    margin-right:1.25em;
+}
+
+.infoArticle {
+    margin-left:0.625em;
+    position:relative;
+}
+
+.suppArticle {
+    position:absolute;
+    top:0;
+    right:0;
+    background-color:transparent;
+    border:0em;
+    cursor:pointer;
+    transition:color 0.2s, transform 0.2s;
+}
+
+.suppArticle:hover {
+    color:var(--color-purple);
+    transform: scale(1.2);
+    transition:color 0.2s, transform 0.2s;
+}
+
+.infoArticle > a > p:first-of-type {
+    font-size:var(--size-medium-small);
+}
+
+.infoArticle > p:first-of-type {
+    font-size:var(--size-small);
+    margin-bottom:1.25em;
+}
+
+.infoArticle > p:nth-of-type(2) {
+    margin-bottom:1.25em;
+    font-family: 'Bebas Neue', cursive;
+    font-size:var(--size-medium-small);
+}
+
+.infoArticle > p:nth-of-type(3), .infoArticle > p:nth-of-type(4) {
+    font-size:var(--size-small);
+}
+
+.infoArticle > a > p:first-of-type, .infoArticle > a > p:nth-of-type(2) {
+    font-family: 'Bebas Neue', cursive;
+}
+
+.fullBasket {
+    display:flex;
+    flex-wrap:wrap;
+    flex-direction:column;
+    align-items: center;
+}
+
+.fullBasket table {
+    margin-top:3.125em;
+    margin-bottom:3.125em;
+    width:18.75em;
+    border-collapse: collapse;
+}
+
+.fullBasket tr:last-of-type {
+    border-top: 1pt solid var(--color-lavander);
+    font-weight: bold;
+}
+
+.fullBasket td {
+    padding:0.625em;
+}
+
+.fullBasket td:nth-of-type(2n) {
+    text-align:right;
+}
+
+.emptyBasket {
+    order:2;
+}
+
+.connectMessage {
+    font-family: 'Bebas Neue', cursive;
+    font-size: var(--size-medium-small);
+    text-align: center;
+}
+
+.basketButtons {
+    width:18.75em;
+    padding:1.25em;
+    font-family: 'Bebas Neue', cursive;
+    border:0em;
+    cursor:pointer;
+    background-color:var(--color-beige);
+    transition: color 0.3s, background-color 0.3s;
+    letter-spacing:0.5rem;
+}
+
+.basketButtons:hover {
+    background-color:var(--color-lavander);
+    color:var(--white);
+    transition: color 0.3s, background-color 0.3s;
+}
+/***************************************CONNEXION*******************************/
+
+.connexionForm {
+    margin-right:auto;
+    margin-left:auto;
+    width:90%;
+    background-color: RGBA(241,232,143,0.1);
+    padding:1.875em 1.875em;
+    text-align:center;
+}
+
+.connexionForm label {
+    font-family: 'Bebas Neue', cursive;
+    letter-spacing: 0.5rem;
+    color:var(--color-black);
+}
+
+.connexionForm input {
+    margin-bottom:1.875em;
+    margin-top:0.625em;
+    width:100%;
+    padding:3%;
+    border:0em;
+    background-color:var(--color-warm-white);
+    border-radius:1.25em;
+    box-shadow: 0em 0em 3.125em var(--color-cheer-yellow);
+    transition: box-shadow 0.3s, background-color 0.3s;
+}
+
+.connectButtons {
+    display:flex;
+    flex-wrap:wrap;
+    flex-direction:column;
+    justify-content: space-between;
+    margin-bottom:1.25em;
+    margin-top:1.25em;
+}
+
+.registerLink {
+    font-family: 'Bebas Neue', cursive;
+    font-size:var(--size-medium-small);
+    letter-spacing: 0.5rem;
+    margin-right:auto;
+    margin-left:auto;
+}
+
+.connectButton {
+    width:100%;
+    padding:1.25em;
+    font-family: 'Bebas Neue', cursive;
+    border:0em;
+    cursor:pointer;
+    background-color:var(--color-beige);
+    transition: color 0.3s, background-color 0.3s;
+    letter-spacing:0.5rem;
+    margin-bottom:1.25em;
+}
+
+.connectButton:hover {
+    background-color:var(--color-lavander);
+    color:var(--white);
+    transition: color 0.3s, background-color 0.3s;
+}
+
+/***************************************ACCOUNT*******************************/
+
+.messageAccount {
+    margin-top:3.125em;
+    text-align:center;
+    color:var(--color-red);
+    margin-bottom:1.25em;
+    font-weight:bold;
+    animation: 1s showMessage;
+}
+
+.accountContainer {
+    display:flex;
+    flex-direction:column;
+}
+
+.accountAccess {
+    background-color: RGBA(241,232,143,0.1);
+    display:flex;
+    flex-direction: column;
+    width:100%;
+    padding:1.25em;
+}
+
+.accountAccess p {
+    margin-bottom:0.625em;
+}
+
+.accountAccess ul {
+    margin-bottom:0.625em;
+}
+
+.accountAccess p:first-of-type {
+    margin-bottom:0.625em;
+    font-family: 'Bebas Neue', cursive;
+    font-size:var(--size-bigger-small);
+    margin-bottom:1.25em;
+}
+
+.accountContent {
+    width:100%;
+}
+
+.actual {
+    text-decoration:underline;
+}
+
+.accountContent label {
+    font-size: var(--size-medium-small);
+    font-family: 'Bebas Neue', cursive;
+}
+
+.accountContent p {
+    margin-bottom:1.25em;
+}
+
+.modifyInfos input {
+    margin-bottom:1.875em;
+    margin-top:0.625em;
+    width:100%;
+    padding:1.5%;
+    border:0em;
+    background-color:var(--color-warm-white);
+    border-radius:1.25em;
+    box-shadow: 0em 0em 3.125em var(--color-cheer-yellow);
+    transition: box-shadow 0.3s, background-color 0.3s;
+}
+
+.accountButtons {
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+}
+
+.accountContent button {
+    width:9.375em;
+    padding:1.25em;
+    font-family: 'Bebas Neue', cursive;
+    border:0em;
+    cursor:pointer;
+    background-color:var(--color-beige);
+    transition: color 0.3s, background-color 0.3s;
+    letter-spacing:0.5rem;
+    margin-bottom:1.25em;
+}
+
+.accountContent button:hover {
+    background-color:var(--color-lavander);
+    color:var(--white);
+    transition: color 0.3s, background-color 0.3s;
+}
+
+.ordersContent table {
+    text-align:center;
+    background-color: RGBA(241,232,143,0.3);
+    width:100%;
+}
+
+.ordersContent thead {
+    font-weight:bold;
+}
+
+.ordersContent td {
+    min-width:33%;
+    padding:0.625em;
+}
+
+.ordersContent tbody td:first-of-type {
+    text-decoration:underline;
+}
+
+.userInfos table {
+    background-color: RGBA(241,232,143,0.3);
+    width:100%;
+}
+
+.userInfos td {
+    width:50%;
+    padding:0.625em;
+}
+
+.orderTable {
+    width:100%;
+    border-collapse: collapse;
+}
+
+.orderTable thead {
+    display:none;
+}
+
+.orderTable tr:nth-child(even) {
+    background-color: RGBA(241,232,143,0.6);
+}
+
+.orderTable tr:nth-child(odd) {
+    background-color: RGBA(241,232,143,0.3);
+}
+
+.orderTable tr {
+    margin-bottom:0.938em;
+}
+
+.orderTable tbody, .orderTable tr, .orderTable td {
+    display:block;
+    width:100%;
+}
+
+.orderTable td {
+    text-align:right;
+    padding:0.625em;
+    position:relative;
+    padding-left:50%;
+}
+
+.orderTable td::before {
+    content:attr(data-label);
+    position:absolute;
+    left:0;
+    width:50%;
+    padding-left:0.625em;
+    font-weight:bold;
+    text-align:left;
+}
+
+.accountBackground {
+    background-color: RGBA(241,232,143,0.3);
+    padding:1.25em;
+}
+
+.accountContent h2 {
+    font-size:var(--size-medium);
+}
+
+.parentAccount {
+    display:flex;
+    justify-content: center;
+    margin-top:3.125em;
+}
+
+.detailsOrder {
+    width:50%;
+    margin-right:auto;
+    margin-left:auto;
+    background-color: RGBA(241,232,143,0.3);
+    padding:0.625em;
+}
+
+.detailsOrder table {
+    width:100%;
+    margin-bottom:1.25em;
+}
+
+.detailsOrder td {
+    width:50%;
+}
+
+.detailsOrder td:nth-of-type(odd) {
+    font-weight: bold;
+}
+
+.detailsOrder td:nth-of-type(even) {
+    text-align:right;
+}
+
+.detailsOrder .articleList {
+    width:100%;
+    background-color: RGBA(241,232,143,0.3);
+}
+
+.orderPoster {
+    width:30%;
+    float:left;
+    margin-right:1.25em;
+}
+
+/***************************************PAGE CONTACT*******************************/
+
+.contactContainer {
+    display:flex;
+    flex-direction:column;
+}
+
+.contactRight, .contactLeft {
+    width:100%;
+}
+
+.contactLeft {
+    display:flex;
+    flex-direction: column;
+}
+
+.map {
+    width:100%;
+    height: 28.125em;
+    margin-top:1.25em;
+    margin-bottom:2.5em;
+}
+
+.contactInfo {
+    font-family: 'Bebas Neue', cursive;
+    letter-spacing: 0.3rem;
+}
+
+.contactInfo p {
+    margin-bottom:0.625em;
+    font-size: var(--size-medium-small);
+}
+
+.contactInfo p:first-of-type {
+    font-size: var(--size-bigger-small);
+    text-align:center;
+    margin-bottom:1.25em;
+    text-decoration:underline;
+}
+
+.contactForm label {
+    font-size: var(--size-medium-small);
+    font-family: 'Bebas Neue', cursive;
+}
+
+.contactForm input, .contactForm textarea, .contactForm select {
+    margin-bottom:1.875em;
+    margin-top:0.625em;
+    padding:1.5%;
+    width:100%;
+    border:0em;
+    background-color:var(--color-warm-white);
+    border-radius:1.25em;
+    box-shadow: 0em 0em 3.125em var(--color-cheer-yellow);
+    transition: box-shadow 0.3s, background-color 0.3s;
+}
+
+.contactForm textarea {
+    height:12.5em;
+}
+
+.contactSubmitButtons {
+    display:flex;
+    justify-content: center;
+}
+
+.contactSubmitButtons button:first-of-type {
+    margin-right:1.25em;
+}
+
+.contactForm button {
+    width:9.375em;
+    padding:1.25em;
+    font-family: 'Bebas Neue', cursive;
+    border:0em;
+    cursor:pointer;
+    background-color:var(--color-beige);
+    transition: color 0.3s, background-color 0.3s;
+    letter-spacing:0.5rem;
+    margin-bottom:1.25em;
+}
+
+.contactForm button:hover {
+    background-color:var(--color-lavander);
+    color:var(--white);
+    transition: color 0.3s, background-color 0.3s;
+}
+
+/*****************************************************************PARTIE ADMIN****************************************************/
+
+/******************************************************LAYOUT******************************************/
+
+/***************************************HEADER*******************************/
+
+.admin {
+    display:flex;
+    align-content: stretch;
+    flex-direction:column;
+}
+
+.admin header {
+    padding-top:2.5em;
+    padding:1.25em;
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content: flex-start;
+    position:relative;
+}
+
+.admin header .logoTitle {
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+}
+
+.admin header .logoTitle a {
+    font-family: 'Bebas Neue', cursive;
+    text-transform:uppercase;
+    font-weight:bold;
+    font-size:var(--title-size);
+    letter-spacing:0.5rem;
+    text-shadow: 0.031em 0.031em var(--color-light-yellow);
+}
+
+.admin header nav {
+    position:absolute;
+    top:0;
+    /* left:0; */
+    z-index:10;
+    width:100%;
+    height:100vh;
+    background-image:url("../images/background.jpg");
+    background-size:cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    display:flex;
+    flex-direction:column;
+    padding-top:12.5em;
+    padding-left:3%;
+    padding-right:3%;
+}
+
+.admin header nav a {
+    display:flex;
+    flex-direction:column;
+    font-family: 'Bebas Neue', cursive;
+    letter-spacing: 0.5rem;
+    margin:0.625em 0em;
+}
+
+.hiddenAdminNav {
+    opacity:0;
+    left:-62.5em;
+    transition-property:opacity, left;
+    transition-duration:0.5s;
+    transition-delay: 0s, 0.5s;
+}
+
+.activeAdminNav {
+    opacity:1;
+    left:0;
+    transition-property:opacity;
+    transition-duration:0.5s;
+}
+
+/******************************************************PAGES******************************************/
+
+/***************************************commun à toutes les pages*******************************/
+.admin main {
+    width:100%;
+    min-height:100vh
+}
+
+label {
+    display:block;
+}
+
+.courrier {
+    text-align:right;
+    background-color: RGBA(241,232,143,0.3);
+    width:15.625em;
+    margin-bottom:1.25em;
+    padding:0.625em;
+    float:right;
+}
+
+/* .courrier::after {
+    content: "";
+    display: block;
+    clear: both;
+} */
+/***************************************Panneau d'administration*******************************/
+
+.adminBoard {
+    width:90%;
+    margin-right:auto;
+    margin-left:auto;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.adminBoard div {
+    margin-top:1.25em;
+    padding:1.25em;
+    width:100%;
+    background-color: RGBA(241,232,143,0.3);
+    text-align:center;
+}
+
+/***************************************évènements*******************************/
+
+.admin table {
+    width:100%;
+    border-collapse: collapse;
+}
+
+.admin thead {
+    display:none;
+}
+
+.admin table tr:nth-child(even) {
+    background-color: RGBA(241,232,143,0.6);
+}
+
+.admin table tr:nth-child(odd) {
+    background-color: RGBA(241,232,143,0.3);
+}
+
+.admin table tr {
+    margin-bottom:0.938em;
+}
+
+.admin table tbody, .admin table tr, .admin table td {
+    display:block;
+    width:100%;
+}
+
+.admin table td {
+    text-align:right;
+    padding:0.625em;
+    position:relative;
+    padding-left:50%;
+}
+
+.admin table td::before {
+    content:attr(data-label);
+    position:absolute;
+    left:0;
+    width:50%;
+    padding-left:0.625em;
+    font-weight:bold;
+    text-align:left;
+}
+
+.admin tfoot {
+    background-color: RGBA(241,232,143,0.3);
+    font-weight:bold;
+}
+
+.centerAdminButton {
+    text-align: right;
+    margin: 3.125em 0em;
+}
+
+.adminButton {
+    width:7.5em;
+    padding:0.938em;
+    font-family: 'Bebas Neue', cursive;
+    border:0em;
+    cursor:pointer;
+    background-color:var(--color-beige);
+    transition: color 0.3s, background-color 0.3s;
+    letter-spacing:0.5rem;
+    margin-bottom:1.25em;
+}
+
+.adminButton:hover {
+    background-color:var(--color-pink);
+    color:var(--white);
+    transition: color 0.3s, background-color 0.3s;
+}
+
+.adminForms label {
+    font-size: var(--size-medium-small);
+    font-family: 'Bebas Neue', cursive;
+}
+
+.adminForms input, .adminForms textarea, .adminForms select {
+    margin-bottom:1.875em;
+    margin-top:0.625em;
+    padding:1.5%;
+    width:100%;
+    border:0em;
+    background-color:var(--color-warm-white);
+    border-radius:1.25em;
+    box-shadow: 0em 0em 3.125em var(--color-cheer-yellow);
+    transition: box-shadow 0.3s, background-color 0.3s;
+}
+
+.adminSubmitButtons {
+    display:flex;
+    justify-content: center;
+}
+
+.adminSubmitButtons button:first-of-type {
+    margin-right:1.25em;
+}
+
+.adminForms button {
+    width:9.375em;
+    padding:1.25em;
+    font-family: 'Bebas Neue', cursive;
+    border:0em;
+    cursor:pointer;
+    background-color:var(--color-beige);
+    transition: color 0.3s, background-color 0.3s;
+    letter-spacing:0.5rem;
+    margin-bottom:1.25em;
+}
+
+.adminForms button:hover {
+    background-color:var(--color-lavander);
+    color:var(--white);
+    transition: color 0.3s, background-color 0.3s;
+}
+
+.adminMessage {
+    background-color: RGBA(241,232,143,0.3);
+    padding:0.625em;
+}
+
+@media screen and (min-width:430px){
+
+    /***************************************PANIER*******************************/
+
+    .infoArticle > a > p:first-of-type {
+        font-size:var(--size-bigger-small);
+    }
+
+    /***************************************TITRES*******************************/
+
+    h1.eventTitles {
+        padding-top:0em;
+    }
+
+    /***************************************TARIFS*******************************/
+
+    .choice {
+        width:80%;
+    }
+
+    /***************************************CONTACT*******************************/
+
+    .plan {
+        width:60%;
+    }
+
+    /***************************************PANIER*******************************/
+
+    .addBasketButton {
+        width:18.75em;
+    }
+}
+
+@media screen and (min-width:510px){
+
+    /***************************************HEADER NAV*******************************/
+
+    .accessMobile {
+        width:10%;
+    }
+
+    /***************************************COMMUN A PLUSIEURS PAGES*******************************/
+
+    .reveal {
+        opacity:0;
+        transform: translateX(-1.875em);
+    }
+    
+    .reveal-visible {
+        opacity: 1; 
+        transform: translateX(0);
+        transition: 1s;
+    }
+
+    /***************************************BILLETTERIE/HIGHLIGHTS*******************************/
+    
+    .previousHighlight, .nextHighlight {
+        display:none;
+    }
+
+    .parentHighlight {
+        display: block;
+    }
+
+    /***************************************ACCUEIL*******************************/
+
+    .newsletterContainer {
+        width:75%;
+        padding:1.25em;
+    }
+
+    /***************************************PANIER*******************************/
+
+    .basketPoster {
+        width:30%;
+    }
+
+    .articleList, .basketTotal {
+        width:80%;
+    }
+
+    /***************************************CONNEXION*******************************/
+
+    .connectButtons {
+        flex-direction:row;
+    }
+
+    .connectButton {
+        width:45%;
+    }
+
+    /***************************************PAGE PAR EVENT*******************************/
+
+    .eventContainer {
+        padding:1.875em 1.875em;
+    }
+    
+    /***************************************ACCOUNT*******************************/
+
+    .accountButtons {
+        flex-direction:row;
+        justify-content: center;
+    }
+    
+    .accountButtons button:first-of-type {
+        margin-right:1.25em;
+    }
+
+    /***************************************PANNEAU ADMIN*******************************/
+
+    .adminBoard div {
+        width:45%;
+    }
+
+}
+
+@media screen and (min-width:600px) {
+
+    /***************************************PANIER*******************************/
+
+    .infoArticle > a > p:first-of-type {
+        font-size:var(--size-medium);
+    }
+
+    /***************************************CONNEXION*******************************/
+
+    .connexionForm {
+        width:80%;
+    }
+
+    /***************************************PAGE PAR EVENT*******************************/
+
+    .eventContainer {
+        padding:1.875em 3.75em;
+    }
+
+    /***************************************ACCOUNT*******************************/
+
+    .orderTable {
+        background-color: RGBA(241,232,143,0.3);
+    }
+
+    .orderTable thead {
+        display:table-header-group;
+        background-color: RGBA(241,232,143,0.3);
+        font-weight:bold;
+    }
+
+    .orderTable tr:nth-child(even) {
+        background-color: RGBA(241,232,143,0);
+    }
+
+    .orderTable tr:nth-child(odd) {
+        background-color: RGBA(241,232,143,0.0);
+    }
+
+    .orderTable tr {
+        margin-bottom:0em;
+    }
+
+    .orderTable tbody {
+        display:table-row-group;
+    }
+
+    .orderTable tr {
+        display:table-row;
+    }
+
+    .orderTable td {
+        display:table-cell;
+        width:20%;
+        text-align:left;
+        padding-left: 0.625em;
+    }
+
+    .orderTable td::before {
+        display:none;
+    }
+
+    /***************************************ADMIN*******************************/
+
+    .admin table {
+        background-color: RGBA(241,232,143,0.3);
+    }
+
+    .admin thead {
+        display:table-header-group;
+        background-color: RGBA(241,232,143,0.3);
+        font-weight:bold;
+    }
+
+    .admin tfoot {
+        background-color: RGBA(241,232,143,0.3);
+        font-weight:bold;
+    }
+
+    .admin tfoot td:first-of-type {
+        text-align:right;
+    }
+
+    .admin table tr:nth-child(even) {
+        background-color: RGBA(241,232,143,0);
+    }
+
+    .admin table tr:nth-child(odd) {
+        background-color: RGBA(241,232,143,0.0);
+    }
+
+    .admin table tr {
+        margin-bottom:0em;
+    }
+
+    .admin table tbody {
+        display:table-row-group;
+    }
+
+    .admin table tr {
+        display:table-row;
+    }
+
+    .admin table td {
+        display:table-cell;
+        width:20%;
+        text-align:left;
+        padding-left: 0.625em;
+    }
+
+    .admin table td::before {
+        display:none;
+    }
+}
+
+/***********************************************************TABLETTE ET +*********************************************/
+
+@media screen and (min-width:800px) {
+    
+    /*****************************************************************LAYOUT****************************************************/
+
+    /***************************************FOOTER*******************************/
+
+    footer {
+        height:18.75em;
+    }
+
+    .footerContainer {
+        width:90%;
+        margin-right: auto;
+        margin-left: auto;
+        padding: 1.25em;
+    }
+
+    .footerContainer {
+        flex-direction:row;
+    }
+
+    .footerLogo, .footerSocial {
+        width:15%;
+    }
+
+    .footerSocial {
+        font-size:var(--size-bigger-small);
+    }
+    
+    /*****************************************************************CONTENU MAIN****************************************************/
+
+    /***************************************COMMUN A TOUTES LES PAGES*******************************/
+
+    main {
+        min-height:50vh;
+    }
+    .container {
+        margin-right:auto;
+        margin-left:auto; 
+        width:85%;
+    }
+
+    h1 {
+        font-size:var(--size-big-medium);
+    }
+
+    h2 {
+        font-size:var(--size-big-medium);
+    }
+
+    h1.eventTitles {
+        font-size:var(--size-medium);
+    }
+
+    /***************************************HOMEPAGE*******************************/
+
+    /******************slider*******************/
+    .slider {
+        margin-top:2.5em;
+        display:block;
+        position: relative;
+        width:100%;
+    }
+
+    .slider img:first-child {
+        position:relative;
+        display:block;
+        visibility:hidden;
+        width:100%;
+    }
+    
+    .slider img {
+        position:absolute;
+        top:0;
+        opacity:0;
+        transition:opacity 0.5s;
+        width:100%;
+    }
+    
+    .sliderDetails {
+        opacity:0;
+        transition:opacity 0.5s;
+    }
+    
+    .slider img.active {
+        opacity:1;
+        transition:opacity 0.5s;
+        width:100%;
+    }
+    
+    .sliderDetails.active {
+        opacity:1;
+        transition:opacity 0.5s;
+    }
+
+    @keyframes fade {
+        from
+        {
+            opacity:0.7;
+        }
+        to
+        {
+            opacity:0.7;
+        }
+    }
+    
+    @keyframes slide {
+        from
+        {
+            opacity:0.7;
+        }
+        to
+        {
+            opacity:0.7;
+        }
+    } 
+    
+    .sliderArtist, .sliderDay, .sliderMonth, .sliderYear, .sliderName, .infoSlider, .sliderPrevious, .sliderNext {
+        position:absolute;
+        color:var(--color-beige);
+        font-family: 'Bebas Neue', cursive;
+    }
+
+    .sliderArtist {
+        top:10%; 
+        left:5%;   
+        font-size:6.5vw;
+        text-shadow: 0.05em 0.05em var(--color-dark-yellow);
+    }
+    
+    .sliderDay {
+        left:80%; 
+        top:8%;  
+        font-size:3vw;
+        text-shadow: 0.05em 0.05em var(--color-dark-yellow);
+    }
+    
+    .sliderMonth {
+        left:85%; 
+        top:7%; 
+        writing-mode: vertical-rl;
+        text-orientation: upright;  
+        font-size:3vw;
+        font-weight:bold;
+        text-shadow: 0.05em 0.05em var(--color-dark-yellow);
+    }
+
+    .sliderYear {
+        left:90%; 
+        top:5%; 
+        writing-mode: vertical-rl;
+        text-orientation: upright; 
+        font-size:7vw;
+        opacity:0.2;
+        font-weight:bold;
+        text-shadow: 0.05em 0.05em var(--color-dark-yellow);
+    }
+
+    .sliderName {
+        top:25%;  
+        left:5%;  
+        font-size:4vw;
+        text-shadow: 0.05em 0.05em var(--color-dark-yellow);
+    }
+    
+    .infoSlider {
+        top:90%; 
+        left:50%; 
+        font-size:2.5vw;  
+        text-shadow: 0.05em 0.05em var(--color-dark-yellow);
+        pointer-events:none;
+        width:17%;
+    }
+
+    .infoSlider a {
+        color:var(--color-beige);
+        position:relative;
+        z-index:2;
+    }
+
+    .infoSlider.active {
+        top:90%; 
+        left:80%; 
+        pointer-events:auto;
+    }
+
+    .sliderPrevious, .sliderNext {
+        top:50%;
+        background:none; 
+        border:0em;
+        font-size:var(--size-medium);
+        opacity:0.4;
+    }
+
+    .sliderPrevious:hover, .sliderNext:hover {
+        opacity:0.6;
+    }
+
+    .sliderPrevious {
+        left:0; 
+    }
+
+    .sliderNext {
+        right:0;   
+    }
+
+    /***************************************PANIER*******************************/
+
+    .infoArticle > a > p:nth-of-type(2) {
+        font-size:var(--size-medium-small);
+    }
+
+    .basketPoster {
+        width:25%;
+    }
+
+    .posterEvent {
+        display:block;
+        width:30%;
+        float:left;
+        margin-right:1.875em;
+    }
+
+    .pricesDetails {
+        display:flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    
+    .pricesLeft, .pricesRight {
+        width:48%;
+        text-align:center;
+    }
+
+    .pricesRight {
+        margin-top:0em;
+    }
+
+    /***************************************CONNEXION*******************************/
+
+    .connexionForm label {
+        font-size: var(--size-medium-small);
+    }
+
+    /***************************************CONTACT*******************************/
+
+    .plan {
+        width:90%;
+    }
+
+    .addBasketButton {
+        width:14.375em;
+    }
+
+    /***************************************INFOS PRATIQUES*******************************/
+
+    .practical .reveal {
+        display:block;
+    }
+
+    .practical .reveal:nth-of-type(2n+1) img {
+        width:35%;
+        float:left;
+        margin-right:1.25em;
+    }
+
+    .practical .reveal:nth-of-type(2n) img {
+        width:35%;
+        float:right;
+        margin-left:1.25em;
+    }
+
+    /***************************************ADMIN*******************************/
+
+    .adminForms input, .adminForms textarea, .adminForms select {
+        width:70%;
+    }
+    
+}
+
+@media screen and (min-width:980px) {
+
+    /***************************************HEADER*******************************/
+
+    .fa-bars {
+        display:none;
+    }
+
+    .user .hiddenNav {
+        display:block;
+        width:80%;
+        opacity:1;
+        left:0;
+    }
+
+    .accessMobile {
+        display:none;
+    }
+
+    .access {
+        display:block;
+    }
+
+    .user header {
+        align-items:center;
+        width:90%;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .user header nav {
+        position:relative;
+        top:0;
+        left:0;
+        z-index:10;
+        width:50%;
+        background:none;
+        height: auto;
+    }
+
+    .user header nav ul {
+        display:flex;
+        justify-content: space-between;
+        align-items: end;
+        margin-top:0em;
+    }
+
+    .user header nav ul li {
+        display:flex;
+        align-items:center;
+        margin-top:0em;
+        margin-bottom:0em;
+    }
+    .user header nav li:hover, .user header nav li a:hover {
+        transform: scale(1.05);
+    }
+
+    .searching {
+        position:absolute;
+        width:120%;
+        height:100vh;
+        top:0;
+        z-index:15;
+    }
+
+    .activeSearch {
+        left:-10%;
+    }
+
+    .searchFormContent {
+        margin-top:15%;
+        margin-left:auto;
+        margin-right:auto;
+        width:60%;
+    }
+
+    .user .hiddenNav {
+        width: 75%;
+    }
+
+    .newsletterContainer {
+        width:60%;
+        padding:1.25em;
+    }
+
+    .filterContainer {
+        width:45%;
+    }
+
+    /***************************************PANNIER*******************************/
+
+    .basketContainer {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+    .articleList, .basketTotal {
+        background-color: RGBA(241,232,143,0.1);
+        width:48%;
+        padding:1.25em;
+    }
+
+    .basketPoster {
+        width:35%;
+    }
+
+    /***************************************CONNEXION*******************************/
+
+    .connexionForm {
+        padding:1.875em 3.75em;
+        width:60%;
+    }
+
+    /***************************************PAGE PAR CONCERT*******************************/
+
+    .infoEventSuite {
+        flex-direction:row;
+    }
+
+    .eventVideo {
+        width:45%;
+        padding-top: 25.26%;
+    }
+    
+    .eventDescription {
+        width:45%;
+    }
+
+    .posterEvent {
+        width:40%;
+        float:left;
+        margin-right:0em;
+    }
+
+    h1.eventTitles {
+        font-size:var(--size-big-medium);
+    }
+
+    h2.eventTitles {
+        font-size:var(--size-big);
+    }
+
+    .addBasketButton {
+        width:18.75em;
+    }
+
+    /***************************************CONTACT*******************************/
+
+    .contactContainer {
+        flex-direction:row;
+        flex-wrap: wrap;
+        justify-content:space-between;
+    }
+    
+    .contactRight, .contactLeft {
+        width:45%;
+    }
+
+    /***************************************ACCOUNT*******************************/
+
+    .accountContainer {
+        display:flex;
+        flex-direction:row;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    .accountAccess {
+        display:flex;
+        flex-direction: column;
+        width:25%;
+    }
+    
+    .accountContent {
+        width:70%;
+        padding:0em 3.125em;
+    }
+
+    /***************************************ADMIN*******************************/
+
+    .admin {
+        display:flex;
+        align-content: stretch;
+        flex-direction:row;
+    }
+
+    .admin header {
+        padding-top:2.5em;
+        padding:1.25em;
+        width:20%;
+        display:flex;
+        flex-direction:column;
+        background-color: var(--color-beige);
+        justify-content: flex-start;
+    }
+
+    .admin main {
+        width:80%;
+    }
+
+    .admin header nav {
+        display:flex;
+        position:initial;
+        background-image:none;
+        padding-top:3.125em;
+    }
+
+    .hiddenAdminNav {
+        opacity:1;
+    }
+}
+
+@media screen and (min-width:1100px) {
+
+    /***************************************PAGE PAR EVENT*******************************/
+
+    .posterEvent {
+        width:35%;
+        margin-right:3.75em;
+    }
+}
+
+@media screen and (min-width:1200px) {
+
+    /***************************************PANNIER*******************************/
+
+    .basketPoster {
+        width:25%;
+    }
+}
+
+
+@media screen and (min-width:1200px) {
+
+    /******************************************************LAYOUT*******************************/
+    
+    /***************************************HEADER*******************************/
+    
+    .user .hiddenNav {
+        width: 65%;
+    }
+
+    /***************************************footer*******************************/
+
+    .footerLogo, .footerSocial {
+        width:10%;
+    }
+
+    /***************************************BILLETTERIE*******************************/
+
+    .filterContainer {
+        width:36%;
+    }
+
+    /***************************************CONNEXION*******************************/
+
+    .connexionForm {
+        width:50%;
+    }
+
+    /***************************************PAGE PAR EVENT*******************************/
+
+    .eventContainer {
+        padding:1.875em 10%;
+    }
+}
+
+@media screen and (min-width:1300px) {
+
+    /***************************************PAGE PAR EVENT*******************************/
+
+    .infoEvent {
+        padding:3%;
+    }
+}
+
+@media screen and (min-width:1400px) {
+
+    /***************************************PAGE PAR EVENT*******************************/
+
+    .infoEvent {
+        padding:5%;
+    }
+}
+

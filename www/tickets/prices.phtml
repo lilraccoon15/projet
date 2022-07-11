@@ -1,0 +1,68 @@
+<main>
+    <div class="container">
+
+        <h1 class="eventTitles"><?= $event['artist']?></h1>
+        <h2 class="eventTitles"><?= $event['name']?></h2>
+
+        <p class="eventDate"><?= $event['date']?> à <?= $event['time']?></p>
+
+        <?php foreach($tickets as $ticket) : ?>
+                <p><span class="bold"><?= $ticket['name'] ?> :</span> <?= $ticket['description'] ?></p>
+        <?php endforeach; ?>
+
+        <div class="pricesDetails">
+            <div class="pricesLeft">
+                <img src="www/images/plan.png" alt="plan de la salle" class="plan">
+            </div>
+
+            <div class="pricesRight">
+                <div class="choice">
+                    <div class="choiceTitle">
+                        Choisissez votre tarif :
+                    </div>
+                    <form action="index.php?action=add_basket" method="post" id="addBasket">
+                        <?php if(isset($message)) : ?>
+                            <div class="message"><?= $message ?></div>
+                        <?php endif; ?>
+
+                        <?php foreach($tickets as $ticket) : ?>
+                        
+                            <div class="toggle">
+                                <div><?= $ticket['name'] ?></div>
+                                <div><?= $ticket['price'] ?>€</div>
+                            </div>
+
+                            <div class="priceForm">
+                                <div>
+                                    <input type="hidden" value="<?= $event['name']?>" id="event">
+                                    <input type="hidden" value="<?= $event['poster']?>" id="poster">
+                                    <input type="hidden" value="<?= $event['artist']?>" id="artist">
+                                    <input type="hidden" value="<?= $event['date']?>" id="date">
+                                    <input type="hidden" value="<?= $event['time']?>" id="time">
+                                    <input type="hidden" value="<?= $event['id_event']?>" id="id_event">
+                                    <input type="hidden" value="<?= $ticket['price'] ?>" name="price_event">
+                                    <input type="hidden" value="<?= $ticket['id_price'] ?>" name="id_price">
+                                    
+                                    <label>Quantité :</label>
+                                    <select name="<?= $ticket['name'] ?>">
+                                        <option value="0">0</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                    </select>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </form>
+
+                    <?php if(!isset($message)) : ?>
+                        <button type="button" id="add" class="addBasketButton">Ajouter au panier</button>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script type="text/javascript" src="www/js/showPrices.js"></script>
+</main>

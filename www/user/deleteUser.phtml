@@ -1,0 +1,47 @@
+<main class="yellowWave">
+    <div class="container accountContainer">   
+        
+        <div class="accountAccess">
+            <p>Bonjour <?=  $_SESSION["user"]["name"] ?> <?=  $_SESSION["user"]["lastname"] ?> !</p>
+            <p><a href="index.php?action=account">Tableau de bord</a></p>
+            <p><a href="index.php?action=account&myOrders">Mes commandes</a></p>
+            <p class="actual"><a href="index.php?action=account&myInfos">Mes informations</a></p>
+            <ul>
+                    <li><a href="index.php?action=modifyAccount">Modifier mes informations</a></li>
+                    <?php if($userController -> newsletter_joined()) : ?>
+                        <li><a href="index.php?action=changeNewsletter&suppNewsletter">Me désinscrire de la newsletter</a></li>
+                    <?php else : ?>
+                        <li><a href="index.php?action=changeNewsletter">M'inscrire à la newsletter</a></li>
+                    <?php endif; ?>
+                    <li><a href="index.php?action=modifyPassword">Modifier mon mot de passe</a></li>
+                    <li class="actual"><a href="index.php?action=deleteUser">Supprimer mon compte</a></li>
+                </ul>
+            <p><a href="index.php?action=disconnect">Se déconnecter</a></p>
+        </div>
+
+        <div class="accountContent">
+            <h1>Suppression</h1>
+            <div class="accountBackground">
+                <form action="index.php?action=deleteUser" method="post">
+                    <?php if(isset($message)) : ?>
+                        <div class="message"><?= $message ?></div>
+                    <?php endif; ?>
+                    <p>
+                        <label>Voulez-vous supprimer votre compte ?</label>
+                        <input type="checkbox" name="deleteAccount" value="yes">Oui
+                    </p>
+                    <?php if($userController -> newsletter_joined()) : ?>
+                        <p>
+                            <label>Voulez-vous vous retirer également de la newsletter ?</label>
+                            <input type="checkbox" name="deleteNewsletter" value="yes">Oui
+                        </p>
+                    <?php endif; ?>
+                    <div class="accountButtons">
+                        <button type="submit" value="submit">Confirmer</button>
+                        <button type="reset" value="reset">Annuler</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>

@@ -1,0 +1,57 @@
+<main class="yellowWave">
+    <div class="container">
+        <?php if(array_key_exists("showDetails", $_GET)) : ?>
+            <h1>Utilisateur n°<?= $user["id_user"] ?></h1>
+
+            <div class="courrier">
+                <p><?= $user["lastname"] ?> <?= $user["name"] ?></p>
+                <p><?= $user["adress"] ?></p>
+                <p><?= $user["postcode"] ?></p>
+                <p><?= $user["city"] ?></p>
+                <p><?= $user["country"] ?></p>
+                <p><?= $user["birthdate"] ?></p>
+                <p><?= $user["phone"] ?></p>
+                <p><?= $user["email"] ?></p>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <td>N° de commande</td>
+                        <td>Date</td>
+                        <td>Montant</td>
+                    </tr>
+                </thead>
+                <?php foreach($orders as $order) : ?>
+                    <tr>
+                        <td data-label="N° commande"><a href="index.php?action=adminOrders&id=<?= $order["id_order"] ?>&showDetails"><?= $order["id_order"] ?></a></td>
+                        <td data-label="Date"><?= $order["date"] ?></td>
+                        <td data-label="Montant"><?= $order["payment"] ?> €</td>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
+
+        <?php else : ?>
+            <h1>Liste des utilisateurs</h1>
+
+            <table>
+                <thead>
+                    <tr>
+                        <td>Numéro de client</td>
+                        <td>Nom de famille</td>
+                        <td>Prénom</td>
+                        <td>Adresse email</td>
+                    </tr>
+                </thead>
+            <?php foreach($users as $user) : ?>
+                <tr>
+                    <td data-label="N° client"><a href="index.php?action=adminUsers&id=<?= $user["id_user"] ?>&showDetails"><?= $user["id_user"] ?></a></td>
+                    <td data-label="Nom"><?= $user["lastname"] ?></td>
+                    <td data-label="Prénom"><?= $user["name"] ?></td>
+                    <td data-label="Email"><?= $user["email"] ?></td>
+                </tr>
+            <?php endforeach; ?>
+            </table>
+        <?php endif; ?>
+    </div>
+</main>

@@ -1,0 +1,48 @@
+<main class="yellowWave">
+    <div class="container">
+        <?php if($this -> admin_connected()): ?>
+            
+            <h1>Panneau d'administration</h1>
+
+            <div class="adminBoard">
+
+                <div>
+                    <h2><?= $sells["number"] ?> Commandes</h2>
+                    passées au cours du dernier mois
+                </div>
+                <div>
+                    <h2><?= $members["number"] ?> Membres</h2>
+                    ont décidé de nous faire confiance
+                </div>
+                <div>
+                    <h2><?= $concerts["number"] ?> Concerts</h2>
+                    programmés dans les mois à venir
+                </div> 
+                <div>
+                    <h2>Compte</h2>
+                    <a href="index.php?action=modifyAdmin">Modifier le compte administrateur</a>
+                </div>
+
+            </div>
+
+        <?php else : ?>
+            <h1>Se connecter</h1>
+            <div class="connexionForm">
+                <form action="index.php?action=admin" method="post">
+                    <?php if(isset($message)) : ?>
+                        <div class="message"><?= $message ?> </div>
+                    <?php endif; ?>
+                    <p><label>Email :</label></p>
+                    <input type="email" name="email">
+                    <p><label>Mot de passe :</label></p>
+                    <input type="password" name="password">
+
+                    <div class="connectButtons">
+                        <button type="submit" value="submit" class="connectButton">Se connecter</button>
+                        <button type="reset" value="submit" class="connectButton">Annuler</button>
+                    </div>
+                </form>
+            </div>
+        <?php endif; ?>
+    </div>
+</main>

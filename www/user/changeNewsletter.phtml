@@ -1,0 +1,51 @@
+<main class="yellowWave">
+    <div class="container accountContainer">   
+        
+        <div class="accountAccess">
+            <p>Bonjour <?=  $_SESSION["user"]["name"] ?> <?=  $_SESSION["user"]["lastname"] ?> !</p>
+            <p><a href="index.php?action=account">Tableau de bord</a></p>
+            <p><a href="index.php?action=account&myOrders">Mes commandes</a></p>
+            <p class="actual"><a href="index.php?action=account&myInfos">Mes informations</a></p>
+            <ul>
+                    <li><a href="index.php?action=modifyAccount">Modifier mes informations</a></li>
+                    <?php if($userController -> newsletter_joined()) : ?>
+                        <li class="actual"><a href="index.php?action=changeNewsletter&suppNewsletter">Me désinscrire de la newsletter</a></li>
+                    <?php else : ?>
+                        <li class="actual"><a href="index.php?action=changeNewsletter">M'inscrire à la newsletter</a></li>
+                    <?php endif; ?>
+                    <li><a href="index.php?action=modifyPassword">Modifier mon mot de passe</a></li>
+                    <li><a href="index.php?action=deleteUser">Supprimer mon compte</a></li>
+                </ul>
+            <p><a href="index.php?action=disconnect">Se déconnecter</a></p>
+        </div>
+
+        <div class="accountContent newsletterContent">
+            <h1>Newsletter</h1>
+            <div class="accountBackground">
+                <?php if(array_key_exists("suppNewsletter", $_GET)) : ?>
+                    <form action="index.php?action=changeNewsletter&suppNewsletter" method="post">
+                        <p>
+                            <label>Se désinscrire de la newseletter ?</label>
+                            <input type="checkbox" name="deleteNewsletter" value="yes">Oui
+                        </p>
+                        <div class="accountButtons">
+                            <button type="submit" value="submit">Confirmer</button>
+                            <button type="reset" value="reset">Annuler</button>
+                        </div>
+                    </form>
+                <?php else : ?>
+                    <form action="index.php?action=changeNewsletter" method="post">
+                        <p>
+                            <label>Rejoindre la newseletter ?</label>
+                            <input type="checkbox" name="addNewsletter" value="yes">Oui
+                        </p>
+                        <div class="accountButtons">
+                            <button type="submit" value="submit">Confirmer</button>
+                            <button type="reset" value="reset">Annuler</button>
+                        </div>
+                    </form>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+</main>

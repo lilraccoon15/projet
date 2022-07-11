@@ -1,0 +1,53 @@
+<main class=yellowWave>
+    <div class="container">
+
+        <?php if(array_key_exists("visualise", $_GET)) : ?>
+            <h1>Message numéro : <?= $message["id_message"] ?></h1>
+
+            <div class="courrier">
+                <p>N° d'utilisateur : <?= $message["id_user"] ?></p>
+                <p><?= $message["lastname"] ?></p>
+                <p><?= $message["name"] ?></p>
+                <p><?= $message["phone"] ?></p>
+                <p><?= $message["email"] ?></p>
+            </div>
+            <div class="clearfix"></div>
+            <div class="adminMessage">
+                <p>Objet du message : <?= $message["object"] ?></p>
+                <p>Date : <?= $message["date"] ?></p>
+                <p>Message :</p>
+                <p><?= $message["message"] ?></p>
+            </div>
+
+        <?php else : ?>
+            <h1>Messages des utilisateurs</h1>
+
+            <?php if(array_key_exists("message",$_GET)) : ?>
+                <div class="message"><?= $_GET["message"] ?></div>
+            <?php endif; ?>
+
+            <table>
+                <thead>
+                    <tr>
+                        <td>Numéro de message</td>
+                        <td>Numéro utilisateur</td>
+                        <td>Objet du message</td>
+                        <td>Date</td>
+                        <td>Visualiser ?</td>
+                        <td>Supprimer ?</td>
+                    </tr>
+                </thead>
+                <?php foreach($contacts as $contact) : ?>
+                    <tr>
+                        <td data-label="N° message"><?= $contact["id_message"] ?></td>
+                        <td data-label="N° utilisateur"><?= $contact["id_user"] ?></td>
+                        <td data-label="Objet"><?= $contact["object"] ?></td>
+                        <td data-label="Date"><?= $contact["date"] ?></td>
+                        <td data-label="Visualiser ?"><a href="index.php?action=adminMessages&visualise&id=<?= $contact["id_message"] ?>">Visualiser</a></td>
+                        <td data-label="Supprimer ?"><a href="index.php?action=suppMessage&id=<?= $contact["id_message"] ?>">Supprimer</a></td>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
+        <?php endif; ?>
+    </div>
+</main>

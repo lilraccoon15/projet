@@ -1,0 +1,37 @@
+<main class="yellowWave">
+    <div class="container">
+        <?php if(array_key_exists("add", $_GET)) : ?>
+            <h1>Ajouter une catégorie</h1>
+            <form action="index.php?action=adminCategories&add" method="post" class="adminForms">
+                <?php if(isset($message)) : ?>
+                    <div class="message"><?= $message ?></div>
+                <?php endif; ?>
+                <p><label>Nom de la catégorie :</label></p>
+                <input type="text" name="cat_name">
+                <div class="adminSubmitButtons">
+                    <button type="submit" value="submit">Ajouter</button>
+                    <button type="reset" value="reset">Annuler</button>
+                </div>
+            </form>
+        <?php else : ?>
+            <h1>Liste des catégories</h1>
+
+            <div class="centerAdminButton">
+                <a href="index.php?action=adminCategories&add" class="adminButton">Ajouter une catégorie</a>
+            </div>
+
+            <?php if(array_key_exists("message",$_GET)) : ?>
+                <div class="message"><?= $_GET["message"] ?></div>
+            <?php endif; ?>
+            <table>
+            <?php foreach($categories as $categorie) : ?>
+                <tr>
+                    <td><?= $categorie["cat_name"] ?></td>
+                </tr>
+            <?php endforeach; ?>
+            </table>
+
+            
+        <?php endif; ?>
+    </div>
+</main>

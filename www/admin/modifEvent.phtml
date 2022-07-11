@@ -1,0 +1,40 @@
+<main class="yellowWave">
+    <div class="container">
+        <h1>Modification d'évènement</h1>
+        <form action="index.php?action=eventModif&id=<?= $event['id_event'] ?>" method="post" enctype="multipart/form-data" class="adminForms">
+            <?php if(isset($message)) : ?>
+                <div class="message"><?= $message ?></div>
+            <?php endif; ?>
+            <input type="hidden" name="id_event" value="<?= $event['id_event'] ?>">
+            <input type="hidden" name="old_artist" value="<?= $event['artist'] ?>">
+            <p><label>Artiste :</label></p>
+            <input type="text" name="artist" value="<?= $event['artist'] ?>">
+            <p><label>Nom de la tournée :</label></p>
+            <input type="text" name="tourName" value="<?= $event['name'] ?>">
+            <p><label>Catégorie :</label></p>
+            <select name="category">
+                <option value="<?= $event['category'] ?>"><?= $event['category'] ?></option>
+                <?php foreach($cats as $cat) : ?>
+                    <option value="<?= $cat["cat_name"]?>"><?= $cat["cat_name"]?></option>
+                <?php endforeach; ?>
+            </select>
+            <p><label>Description :</label></p>
+            <textarea name="description"><?= $event['description'] ?></textarea>
+            <p><label>Date :</label></p>
+            <input type="date" name="date" value="<?= $event['date'] ?>">
+            <p><label>Heure :</label></p>
+            <input type="time" name="time" value="<?= $event['time'] ?>">
+            <p><label>Poster actuel :</label></p>
+            <input type="hidden" name="posterSet" value="<?= $event['poster'] ?>">
+            <img src="www/images/posters/<?= $event['poster'] ?>" alt="<?= $event['poster'] ?>">
+            <p><label>Poster :</label></p>
+            <input type="file" name="poster">
+            <p><label>Prix d'appel :</label></p>
+            <input type="text" name="price" value="<?= $event['lowest_price'] ?>">
+            <div class="adminSubmitButtons">
+                <button type="submit" value="submit">Modifier</button>
+                <button type="reset" value="reset">Annuler</button>
+            </div>
+        </form>
+    </div>
+</main>

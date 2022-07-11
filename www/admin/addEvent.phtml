@@ -1,0 +1,41 @@
+<main class="yellowWave">
+    <div class="container">
+        <h1>Ajouter un évènement</h1>
+        <form action="index.php?action=addEvent" method="post" enctype="multipart/form-data" class="adminForms">
+            <?php if(isset($message)) : ?>
+                <div class="message"><?= $message ?></div>
+            <?php endif; ?>
+            <p><label>Artiste :</label></p>
+            <input type="text" name="artist">
+            <p><label>Nom de la tournée :</label></p>
+            <input type="text" name="tourName">
+            <p><label>Catégorie :</label></p>
+            <select name="category">
+                <?php foreach($cats as $cat) : ?>
+                    <option value="<?= $cat["cat_name"]?>"><?= $cat["cat_name"]?></option>
+                <?php endforeach; ?>
+            </select>
+            <p><label>Description :</label></p>
+            <textarea name="description"></textarea>
+            <p><label>Date :</label></p>
+            <input type="date" name="date">
+            <p><label>Heure :</label></p>
+            <input type="time" name="time">
+            <p><label>Poster :</label></p>
+            <input type="file" name="poster">
+            <p><label>Slider ?</label></p>
+            <input type="checkbox" name="slider" id="checkboxSlider" value="yes" class="smallInput">Oui
+            <div class="hidden" id="bannSlider">
+                <p><label>Bannière pour slider :</label></p>
+                <input type="file" name="banner">
+            </div>
+            <p><label>Prix d'appel :</label></p>
+            <input type="text" name="price">
+            <div class="adminSubmitButtons">
+                <button type="submit" value="submit">Ajouter</button>
+                <button type="reset" value="reset">Annuler</button>
+            </div>
+        </form>
+    </div>
+    <script type="text/javascript" src="www/js/script.js"></script>
+</main>

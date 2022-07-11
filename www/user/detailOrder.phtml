@@ -1,0 +1,26 @@
+<main class="yellowWave">
+    <div class="container">
+        <h1>Détails de la commande</h1>
+        <div class="detailsOrder">
+            <table>
+                <tr>
+                    <td>Commande n°</td>
+                    <td><?= $order["id_order"] ?></td>
+                </tr>
+                <tr>
+                    <td>Date de la commande :</td>
+                    <td><?= $order["date"] ?></td>
+                </tr>
+                <tr>
+                    <td>Montant de la commande :</td>
+                    <td><?= $order["payment"] ?>€</td>
+                </tr>
+            </table>
+            <div class="articleList">
+                <?php foreach($tickets as $ticket) : ?>
+                    <div class='article clearfix'><img src='www/images/posters/<?= $ticket["poster"] ?>' alt='<?= $ticket["artist"] ?>' class='orderPoster'><div class='infoArticle'><a href='index.php?action=event&id=<?= $ticket["id_event"] ?>'><p><?= $ticket["artist"] ?></p><p><?= $ticket["name"] ?></p></a><p><?= $ticket["date"] ?> à <?= $ticket["time"] ?></p><p><?= $ticket["cat_name"] ?></p><p>Quantité : <?= $ticket["quantity"] ?></p><p>Tarif unitaire : <?= $ticket["prices"] ?>€</p></div></div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </div>
+</main>

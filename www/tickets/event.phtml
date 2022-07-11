@@ -1,0 +1,29 @@
+
+<main class="yellowWave">
+    <div class="container">
+        <div class="eventContainer">
+            <img src="www/images/posters/<?= $event['poster'] ?>" alt="<?= $event['artist']?>" class="posterEvent">
+        
+            <div class="infoEvent">
+                <h1 class="eventTitles"><?= $event['artist']?></h1>
+                <h2 class="eventTitles"><?= $event['name']?></h2>
+                <p class="eventDate"><?= $event['date']?> à <?= $event['time']?></p>
+                <div class="eventCategory"><?= $event['category']?></div>
+
+                <div class="showPrices">
+                    <a href="index.php?action=showPrices&id=<?= $event['id_event']?>" class="pricesButton">Réserver ma place</a>
+                </div>
+
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="infoEventSuite">
+                <div class="eventVideo">
+                    <iframe class="video" src="<?= $event['video']?>" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div> 
+
+                <div class="eventDescription"><?= $event['description']?></div>
+            </div>
+        </div>
+    </div>
+</main>

@@ -1,0 +1,56 @@
+<main class="yellowWave">
+    <div class="container">
+        <h1>Nous contacter</h1>
+
+        <div class="contactContainer">
+            <div class="contactRight">
+                <h2 class="eventTitles">Formulaire de contact</h2>    
+
+                <?php if(array_key_exists("message",$_GET)) : ?>
+                    <div class="message"><?= $_GET["message"] ?> </div>
+                <?php endif; ?>
+
+                <form action="index.php?action=contact" method="post" class="contactForm">
+                    <?php if(isset($message)) : ?>
+                        <div class="message"><?= $message ?></div>
+                    <?php endif; ?>
+
+                    <label>Nom :</label>
+                    <input type="text" name="lastname">
+                    <label>Prénom :</label>
+                    <input type="text" name="name">
+                    <label>Téléphone :</label>
+                    <input type="phone" name="phone">
+                    <label>Email :</label>
+                    <input type="email" name="email">
+                    <label>Objet</label>
+                    <input type="text" name="object">
+                    <label>Message :</label>
+                    <textarea name="message"></textarea>
+                    
+                    <div class="contactSubmitButtons">
+                        <button type="submit" value="submit">Envoyer</button>
+                        <button type="reset" value="reset">Annuler</button>
+                    </div>
+                </form>
+
+
+
+
+            </div>
+            <div class="contactLeft">
+                <h2 class="eventTitles">Localisation</h2>
+
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2625.168338404246!2d2.3270178514036686!3d48.85500027918554!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e671d64131ac3d%3A0x1fcf7d35455c12d!2s202%20Bd%20Saint-Germain%2C%2075007%20Paris!5e0!3m2!1sfr!2sfr!4v1652792627777!5m2!1sfr!2sfr" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="map"></iframe>
+
+                <div class="contactInfo">
+                    <p>Radioactive</p>
+                    <p><address><i class="fa-solid fa-location-arrow"></i> 202 boulevard Saint-Germain 75007 Paris</address></p>
+                    <p><a href="tel:+33500000000"><i class="fa-solid fa-phone"></i> +33500000000</a></p>
+                    <p><a href="mailto:contact@radioactive.com"><i class="fa-solid fa-envelope"></i> contact@radioactive.com</a></p>
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</main>

@@ -1,0 +1,42 @@
+<main class="yellowWave">
+    <div class="container">
+        <h1>S'enregistrer</h1>
+        <div class="connexionForm">
+            <?php if(array_key_exists("message",$_GET)) : ?>
+                <div class="message"><?= $_GET["message"] ?> </div>
+            <?php endif; ?>
+            <form action="index.php?action=register" method="post">
+                <?php if(isset($message)) : ?>
+                    <div class="message"><?= $message ?></div>
+                <?php endif; ?>
+
+                <label>Nom :</label>
+                <input type="text" name="lastname">
+                <label>Prénom :</label>
+                <input type="text" name="name">
+                <label>Date de naissance :</label>
+                <input type="date" name="date">
+                <label>Adresse :</label>
+                <input type="text" name="adress">
+                <label>Ville</label>
+                <input type="text" name="city">
+                <label>Code postal :</label>
+                <input type="text" name="postcode">
+                <label>Pays :</label>
+                <input type="text" name="country">
+                <label>Téléphone :</label>
+                <input type="tel" name="phone">
+                <label>Email :</label>
+                <input type="email" name="email">
+                <label>Mot de passe :</label>
+                <input type="password" name="password">
+                <label>S'incrire à la newsletter :</label>
+                <input type="checkbox" name="newsletter" value="yes">
+                <div class="connectButtons">
+                    <button type="submit" value="submit" class="connectButton">S'enregistrer</button>
+                    <button type="reset" value="submit" class="connectButton">Annuler</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>

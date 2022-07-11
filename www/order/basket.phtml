@@ -1,0 +1,30 @@
+<main class="yellowWave">
+    <div class="container">
+        <h1>Mon panier</h1>
+
+        <div id="messageBasket" class="messageBasket">
+
+        </div>
+        
+        <div class="basketContainer">
+            <div id="basket" class="articleList">
+
+            </div>
+
+            <div id="basketTotal" class="basketTotal">
+                <div id="fullBasket" class="fullBasket">
+                    <?php if($userController -> is_connected()) : ?>
+                    <button type="button" id="valid" class="basketButtons validBasket">Valider mon panier</button>
+                    <?php else : ?>
+                        <p class="connectMessage">Connectez-vous afin de finaliser votre commande :</p>
+                        <a href="index.php?action=login" class="connectBasket"><button class="basketButtons">Se connecter</button></a>
+                    <?php endif; ?>
+                    <div id="showTotal"></div>
+                    <button type="button" id="empty" class="basketButtons emptyBasket">Vider mon panier</button>
+                </div>
+            </div>
+        </div>
+
+        
+    </div>
+</main>

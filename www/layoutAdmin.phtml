@@ -1,0 +1,49 @@
+<?php $adminController = new AdminController(); ?>
+<?php $eventController = new EventController(); ?>
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title><?= $titre ?></title>
+        <meta name="viewport" content="width=device-width">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oxygen:wght@300&family=Roboto:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+                integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+                crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css">
+        <link rel="stylesheet" href="www/css/normalize.css" type="text/css">
+        <link rel="stylesheet" href="www/css/style.css" type="text/css">
+    </head>
+    <body class="admin">
+        <header>
+            <i class="fas fa-bars" id="adminMenuMobile"></i>
+            <div class="logoTitle">
+                <img src="www/images/logo.png" alt="logo" class="logo">
+                <a href="index.php">Radioactive</a>
+            </div>
+
+            <?php if($adminController -> admin_connected()) : ?>
+                <nav id="adminNav" class="hiddenAdminNav">
+                    <a href="index.php?action=admin">Panneau d'administration</a>
+                    <a href="index.php?action=adminEvents">Evènements</a>
+                    <a href="index.php?action=adminSlider">Slider</a>
+                    <a href="index.php?action=adminTickets">Billets</a>
+                    <a href="index.php?action=adminOrders">Commandes</a>
+                    <a href="index.php?action=adminUsers">Utilisateurs</a>
+                    <a href="index.php?action=adminCategories">Catégories</a>
+                    <a href="index.php?action=adminMessages">Messages</a>
+                    <a href="index.php?action=disconnect">Déconnexion</a>
+                </nav>
+            <?php else : ?>
+
+            <?php endif; ?>
+        </header>  
+        
+        <?php require $template.".phtml"; ?>
+
+        <script type="text/javascript" src="www/js/adminMenu.js"></script>
+    </body>
+</html>

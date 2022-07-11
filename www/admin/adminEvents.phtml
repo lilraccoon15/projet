@@ -1,0 +1,33 @@
+<main class="yellowWave">
+    <div class="container">
+        <h1>Liste des évènements</h1>
+        
+        <div class="centerAdminButton">
+            <a href="index.php?action=addEvent" class="adminButton">Ajouter un évènenement</a>
+        </div>
+
+        <?php if(array_key_exists("message",$_GET)) : ?>
+            <div class="message"><?= $_GET["message"] ?></div>
+        <?php endif; ?>
+        <table class="eventTable">
+            <thead>
+                <tr>
+                    <td>Artiste</td>
+                    <td>Tournée</td>
+                    <td>Date</td>
+                    <td>Modifier ?</td>
+                    <td>Supprimer ?</td>
+                </tr>
+            </thead>
+            <?php foreach($events as $event) : ?>
+                <tr>
+                    <td data-label="Artiste"><?= $event["artist"] ?></td>
+                    <td data-label="Tournée"><?= $event["name"] ?></td>
+                    <td data-label="Date"><?= $event["date"] ?></td>
+                    <td data-label="Modifier ?"><a href="index.php?action=eventModif&id=<?= $event["id_event"] ?>">Modifier</a></td>
+                    <td data-label="Supprimer ?"><a href="index.php?action=eventSupp&id=<?= $event["id_event"] ?>">Supprimer</a></td>
+                </tr>
+            <?php endforeach; ?>
+        </table>
+    </div>
+</main>

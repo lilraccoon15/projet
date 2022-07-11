@@ -1,0 +1,140 @@
+<?php $userController = new UserController(); ?>
+
+<main class="yellowWave">
+    <div class="container accountContainer">
+        <?php if(array_key_exists("myOrders", $_GET)) : ?>
+            <div class="accountAccess">
+                <p>Bonjour <?=  $_SESSION["user"]["name"] ?> <?=  $_SESSION["user"]["lastname"] ?> !</p>
+                <p><a href="index.php?action=account">Tableau de bord</a></p>
+                <p class="actual"><a href="index.php?action=account&myOrders">Mes commandes</a></p>
+                <p><a href="index.php?action=account&myInfos">Mes informations</a></p>
+                <p><a href="index.php?action=disconnect">Se déconnecter</a></p>
+            </div>
+            <div class="accountContent ordersContent">
+                <h1>Mes commandes</h1>
+                <table class="orderTable">
+                    <thead>
+                        <tr>
+                            <td>Numéro de commande</td>
+                            <td>Date de la commande</td>
+                            <td>Montant de la commande</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach($orders as $order) : ?>
+                        <tr>
+                            <td data-label="N° commande">
+                                <a href="index.php?action=detailOrder&idOrder=<?= $order["id_order"] ?>">Commande n°<?= $order["id_order"] ?></a>
+                            </td>
+                            <td data-label="Date">
+                                <?= $order["date"] ?>
+                            </td>
+                            <td data-label="Montant">
+                                <?= $order["payment"] ?>€
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        <?php elseif(array_key_exists("myInfos", $_GET)) : ?>
+            <div class="accountAccess">
+                <p>Bonjour <?=  $_SESSION["user"]["name"] ?> <?=  $_SESSION["user"]["lastname"] ?> !</p>
+                <p><a href="index.php?action=account">Tableau de bord</a></p>
+                <p><a href="index.php?action=account&myOrders">Mes commandes</a></p>
+                <p class="actual"><a href="index.php?action=account&myInfos">Mes informations</a></p>
+                <ul>
+                    <li><a href="index.php?action=modifyAccount">Modifier mes informations</a></li>
+                    <?php if($userController -> newsletter_joined()) : ?>
+                        <li><a href="index.php?action=changeNewsletter&suppNewsletter">Me désinscrire de la newsletter</a></li>
+                    <?php else : ?>
+                        <li><a href="index.php?action=changeNewsletter">M'inscrire à la newsletter</a></li>
+                    <?php endif; ?>
+                    <li><a href="index.php?action=modifyPassword">Modifier mon mot de passe</a></li>
+                    <li><a href="index.php?action=deleteUser">Supprimer mon compte</a></li>
+                </ul>
+                <p><a href="index.php?action=disconnect">Se déconnecter</a></p>
+            </div>
+            <div class="accountContent">
+                <h1>Mes informations</h1>
+                <?php if(array_key_exists("message",$_GET)) : ?>
+                    <div class="message"><?= $_GET["message"] ?> </div>
+                <?php endif; ?>
+                <div class="userInfos">
+                    <table>
+                        <tr>
+                            <td>Nom :</td>
+                            <td><?= $user["lastname"] ?></td>
+                        </tr>
+                        <tr>
+                            <td>Prénom :</td>
+                            <td><?= $user["name"] ?></td>
+                        </tr>
+                        <tr>
+                            <td>Date de naissance :</td>
+                            <td><?= $user["birthdate"] ?></td>
+                        </tr>
+                        <tr>
+                            <td>Adresse :</td>
+                            <td><?= $user["adress"] ?></td>
+                        </tr>
+                        <tr>
+                            <td>Code postal :</td>
+                            <td><?= $user["postcode"] ?></td>
+                        </tr>
+                        <tr>
+                            <td>Ville :</td>
+                            <td><?= $user["city"] ?></td>
+                        </tr>
+                        <tr>
+                            <td>Pays :</td>
+                            <td><?= $user["country"] ?></td>
+                        </tr>
+                        <tr>
+                            <td>Téléphone :</td>
+                            <td><?= $user["phone"] ?></td>
+                        </tr>
+                        <tr>
+                            <td>Adresse email :</td>
+                            <td><?= $user["email"] ?></td>
+                        </tr>
+                    </table>
+                </div>
+                
+            </div>
+        <?php else : ?>
+            <div class="accountAccess">
+                <p>Bonjour <?=  $_SESSION["user"]["name"] ?> <?=  $_SESSION["user"]["lastname"] ?> !</p>
+                <p class="actual"><a href="index.php?action=account">Tableau de bord</a></p>
+                <p><a href="index.php?action=account&myOrders">Mes commandes</a></p>
+                <p><a href="index.php?action=account&myInfos">Mes informations</a></p>
+                <p><a href="index.php?action=disconnect">Se déconnecter</a></p>
+            </div>
+            <div class="accountContent">
+                <h1>Mon compte</h1>
+                
+                <h2>Mon concert à venir</h2>
+
+                <?php if($userController -> nextEvent()) : ?>
+                    <div class="parentAccount">
+                        <div class="parent">
+                            <a href="index.php?action=event&id=<?= $next['id_event'] ?>">
+                                <img src="www/images/posters/<?= $next["poster"] ?>" class="poster" alt="<?= $next["artist"] ?>">
+                                <div class="posterArtist infoPoster"><?= $next["artist"] ?></div>
+                                <div class="posterDay infoPoster"><?= $next["jour"] ?></div>
+                                <div class="posterMonth infoPoster"><?= $next["mois"] ?></div>
+                                <div class="posterYear infoPoster"><?= $next["annee"] ?></div>
+                                <div class="posterName infoPoster"><?= $next["name"] ?></div>
+                                <div class="posterCat infoPoster"><?= $next["category"] ?></div>
+                            </a>
+                        </div>
+                    </div>
+
+                <?php else : ?>
+                    <div class="messageAccount">Vous n'avez pas de concert à venir.</div>
+                <?php endif; ?>     
+            </div>
+        
+        <?php endif; ?>
+    </div>
+</main>

@@ -1,0 +1,129 @@
+<main class="yellowWave">
+    <div class="container">
+        <?php if(array_key_exists("id",$_GET)) : ?>
+
+            <h1>Gestion des tarifs</h1>
+
+            <?php if(array_key_exists("message",$_GET)) : ?>
+                <div class="message"><?= $_GET["message"] ?></div>
+            <?php endif; ?>
+
+            <div class="centerAdminButton">
+                <a href="index.php?action=adminTickets&addTicket&idEvent=<?= $ticketsByEvent["id_event"] ?>" class="adminButton">Ajouter un tarif</a>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <td>Nom du tarif</td>
+                        <td>Prix</td>
+                        <td>Stock de départ</td>
+                        <td>Stock restant</td>
+                        <td>Stock vendu</td>
+                        <td>Modifier ?</td>
+                        <td>Supprimer ?</td>
+                    </tr>
+                </thead>
+            <?php foreach($tickets as $ticket) : ?>
+                <tr>
+                    <td data-label="Nom"><?= $ticket["name"] ?></td>
+                    <td data-label="Prix"><?= $ticket["price"] ?></td>
+                    <td data-label="Stock départ"><?= $ticket["original_stock"] ?></td>
+                    <td data-label="Stock restant"><?= $ticket["remaining_stock"] ?></td>
+                    <td data-label="Stock vendu"><?= $ticket["sold_stock"] ?></td>
+                    <td data-label="Modifier ?"><a href="index.php?action=adminTickets&idTicket=<?= $ticket["id_price"] ?>&changeTicket">Modifier</a></td>
+                    <td data-label="Supprimer ?"><a href="index.php?action=adminTickets&idTicket=<?= $ticket["id_price"] ?>&suppTicket">Supprimer</a></td>
+                </tr>
+            <?php endforeach; ?>
+            </table>
+            
+            
+        <?php elseif(array_key_exists("changeTicket",$_GET) && array_key_exists("idTicket",$_GET)) : ?>
+
+            <h1>Modification du tarif</h1>
+
+            <form action="index.php?action=adminTickets&idTicket=<?= $ticket["id_price"] ?>&changeTicket" method="post" class="adminForms">
+                <?php if(isset($message)) : ?>
+                    <div class="message"><?= $message ?></div>
+                <?php endif; ?>
+
+                <input type="hidden" name="id_event" value="<?= $ticket["id_event"] ?>">
+                <p><label>Nom :</label></p>
+                <input type="text" name="name" value="<?= $ticket["name"] ?>">
+                <p><label>Description :</label></p>
+                <textarea name="description"><?= $ticket['description'] ?></textarea>
+                <p><label>Prix :</label></p>
+                <input type="text" name="price" value="<?= $ticket["price"] ?>">
+                <p><label>Stock de départ :</label></p>
+                <input type="text" name="original" value="<?= $ticket["original_stock"] ?>">
+                <p><label>Stock restant :</label></p>
+                <input type="text" name="remaining" value="<?= $ticket["remaining_stock"] ?>">
+                <p><label>Stock vendu :</label></p>
+                <input type="text" name="sold" value="<?= $ticket["sold_stock"] ?>">
+
+                <div class="adminSubmitButtons">
+                    <button type="submit" value="submit">Modifier</button>
+                    <button type="reset" value="reset">Annuler</button>
+                </div>
+            </form>
+
+
+
+
+
+        <?php elseif(array_key_exists("addTicket",$_GET) && array_key_exists("idEvent", $_GET)) : ?>
+            <h1>Ajouter un tarif</h1>
+
+            <form action="index.php?action=adminTickets&addTicket&idEvent=<?= $ticketsByEvent["id_event"] ?>" method="post" class="adminForms">
+                <?php if(isset($message)) : ?>
+                    <div class="message"><?= $message ?></div>
+                <?php endif; ?>
+
+                <p><label>Nom :</label></p>
+                <input type="text" name="name">
+                <p><label>Description :</label></p>
+                <textarea name="description"></textarea>
+                <p><label>Prix :</label></p>
+                <input type="text" name="price">
+                <p><label>Stock de départ :</label></p>
+                <input type="text" name="original">
+                <p><label>Stock restant :</label></p>
+                <input type="text" name="remaining">
+                <p><label>Stock vendu :</label></p>
+                <input type="text" name="sold">
+
+                <div class="adminSubmitButtons">
+                    <button type="submit" value="submit">Ajouter</button>
+                    <button type="reset" value="reset">Annuler</button>
+                </div>
+            </form>
+        
+        <?php else : ?>
+
+            <h1>Gestion des billets</h1>
+            
+            <?php if(array_key_exists("message",$_GET)) : ?>
+                <div class="message"><?= $_GET["message"] ?></div>
+            <?php endif; ?>
+            <table>
+                <thead>
+                    <tr>
+                       <td>Artiste</td>
+                       <td>Tournée</td>
+                       <td>Date</td>
+                       <td>Billets</td> 
+                    </tr>
+                </thead>
+            <?php foreach($events as $event) : ?>
+                <tr>
+                    <td data-label="Artiste"><?= $event["artist"] ?></td>
+                    <td data-label="Tournée"><?= $event["name"] ?></td>
+                    <td data-label="Date"><?= $event["date"] ?></td>
+                    <td data-label="Billets"><a href="index.php?action=adminTickets&id=<?= $event["id_event"] ?>">Gestion des billets</a></td>
+                </tr>
+            <?php endforeach; ?>
+            </table>
+
+        <?php endif; ?>
+    </div>
+</main>

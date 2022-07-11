@@ -1,0 +1,63 @@
+<main>
+    <section>
+        <div class="slider">
+            <img src='www/images/banners/harry-styles-banner.png' alt='harry-styles-banner' class="backSlider">
+            <?php foreach($slides as $slide) : ?>
+                <img src='www/images/banners/<?= $slide["banner"] ?>' alt='<?= $slide["artist"] ?>' class="imgSlider">
+                <div class="sliderArtist sliderDetails"><?= $slide["artist"] ?></div>
+                <div class="sliderDay sliderDetails"><?= $slide["jour"] ?></div>
+                <div class="sliderMonth sliderDetails"><?= $slide["mois"] ?></div>
+                <div class="sliderYear sliderDetails"><?= $slide["annee"] ?></div>
+                <div class="sliderName sliderDetails"><?= $slide["name"] ?></div>
+                <div class="infoSlider sliderDetails"><a href="index.php?action=event&id=<?= $slide['id_event'] ?>">Plus d'informations</a></div>
+            <?php endforeach; ?>
+            
+            <button class="sliderPrevious" id="previous"><i class="fas fa-angle-left"></i></button>
+            <button class="sliderNext" id="next"><i class="fas fa-angle-right"></i></button>
+        </div>
+    </section>
+    
+    <section class="yellowWave">
+        <div class="container">
+            <h1 class="reveal">Nos prochaines dates</h1>
+            <div class="list sliderHighlight">
+                <?php foreach($highlights as $highlight) : ?>
+                    <div class="parentHighlight parent reveal">
+                        <a href="index.php?action=event&id=<?= $highlight['id_event'] ?>">
+                            <img src="www/images/posters/<?= $highlight["poster"] ?>" class="poster" alt="<?= $highlight["artist"] ?>">
+                            <div class="posterArtist infoPoster"><?= $highlight["artist"] ?></div>
+                            <div class="posterDay infoPoster"><?= $highlight["jour"] ?></div>
+                            <div class="posterMonth infoPoster"><?= $highlight["mois"] ?></div>
+                            <div class="posterYear infoPoster"><?= $highlight["annee"] ?></div>
+                            <div class="posterName infoPoster"><?= $highlight["name"] ?></div>
+                            <div class="posterCat infoPoster"><?= $highlight["category"] ?></div>
+                        </a>
+                    </div>
+                <?php endforeach; ?>  
+                <button class="previousHighlight" id="previousHighlight"><i class="fas fa-angle-left"></i></button>
+                <button class="nextHighlight" id="nextHighlight"><i class="fas fa-angle-right"></i></button>  
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <section class="reveal">
+            <h2>S'inscrire à notre newsletter</h2>
+            <form action="index.php?action=join_newsletter" method="post" id="joinNewsletter" class="newsletterHomeForm">
+                <div id="messageJoin">
+
+                </div>
+                <?php if(isset($message)) : ?>
+                    <div class="message"><?= $message ?></div>
+                <?php endif; ?>
+                <div class="newsletterContainer">
+                    <input type="email" name="email" class="emailNewsletter" placeholder="Votre adresse email">
+                    <button type="submit" value="Submit" id="buttonJoin" class="submitNewsletterButton"><i class="fa-solid fa-angles-right"></i></button>
+                </div>
+                
+            </form> 
+        </section> 
+    </div>
+    <script type="text/javascript" src="www/js/slider.js"></script>
+    <script type="text/javascript" src="www/js/sliderMobile.js"></script>
+</main>
